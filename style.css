@@ -1,0 +1,259 @@
+:root {
+    --bg-color: #0f4c3a; /* 카지노 테이블 느낌의 딥그린 */
+    --card-bg: #ffffff;
+    --text-color: #ffffff;
+    --gold: #ffd700;
+    --player-blue: #3498db;
+    --banker-red: #e74c3c;
+    --tie-green: #2ecc71;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1 {
+    color: var(--gold);
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.scoreboard {
+    background: rgba(0, 0, 0, 0.5);
+    padding: 15px 30px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+    text-align: center;
+    border: 1px solid var(--gold);
+    box-shadow: inset 0 0 10px rgba(255, 215, 0, 0.2);
+}
+
+.table {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    max-width: 800px;
+    margin-bottom: 30px;
+}
+
+.area {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.08);
+    margin: 0 10px;
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+    border: 2px dashed rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+}
+
+.area.player { border-color: var(--player-blue); }
+.area.banker { border-color: var(--banker-red); }
+
+.area h2 {
+    margin-top: 0;
+    font-size: 1.5rem;
+    letter-spacing: 1px;
+}
+.area.player h2 { color: var(--player-blue); }
+.area.banker h2 { color: var(--banker-red); }
+
+.score-display {
+    font-size: 2.2rem;
+    font-weight: bold;
+    margin: 10px 0;
+    color: var(--gold);
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+}
+
+.cards-container {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    min-height: 120px;
+    margin-top: 15px;
+}
+
+.card {
+    width: 75px;
+    height: 115px;
+    background: var(--card-bg);
+    color: #000;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 8px;
+    box-sizing: border-box;
+    font-weight: bold;
+    font-size: 1.2rem;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.4);
+    animation: dealCard 0.35s ease-out forwards;
+}
+
+.card.red { color: var(--banker-red); }
+
+@keyframes dealCard {
+    from { 
+        transform: translateY(-60px) rotate(-10deg); 
+        opacity: 0; 
+    }
+    to { 
+        transform: translateY(0) rotate(0deg); 
+        opacity: 1; 
+    }
+}
+
+.betting-zone {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    border-radius: 15px;
+    width: 100%;
+    max-width: 540px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.betting-zone h3 {
+    margin-top: 0;
+    font-size: 1.1rem;
+    color: #e0e0e0;
+}
+
+.bet-buttons {
+    display: flex;
+    gap: 12px;
+    width: 100%;
+}
+
+.btn {
+    flex: 1;
+    padding: 14px;
+    font-size: 0.95rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+}
+
+.btn-player { background-color: var(--player-blue); color: white; }
+.btn-banker { background-color: var(--banker-red); color: white; }
+.btn-tie { background-color: var(--tie-green); color: white; }
+
+.btn-deal { 
+    background-color: var(--gold); 
+    color: #000; 
+    width: 100%; 
+    font-size: 1.2rem; 
+    margin-top: 5px;
+}
+
+.btn:hover { 
+    transform: translateY(-2px); 
+    filter: brightness(1.15); 
+    box-shadow: 0 6px 8px rgba(0,0,0,0.3);
+}
+
+.btn:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.btn:disabled { 
+    background-color: #7f8c8d; 
+    color: #bdc3c7;
+    cursor: not-allowed; 
+    transform: none; 
+    box-shadow: none;
+}
+
+.result-message {
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: var(--gold);
+    margin: 20px 0;
+    min-height: 40px;
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+}
+
+/* 📊 출목표(경기 기록) 디자인 구역 */
+.roadmap-zone {
+    margin-top: 25px;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 15px;
+    border-radius: 15px;
+    width: 100%;
+    max-width: 540px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.roadmap-zone h3 {
+    margin-top: 0;
+    font-size: 1.1rem;
+    color: #e0e0e0;
+    margin-bottom: 12px;
+}
+
+.roadmap-board {
+    display: flex;
+    gap: 8px;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 15px;
+    border-radius: 10px;
+    min-height: 34px;
+    overflow-x: auto; /* 기록이 늘어나면 가로 스크롤 활성화 */
+    justify-content: flex-start;
+    align-items: center;
+    border: 1px solid #34495e;
+}
+
+/* 스크롤바 디자인 커스텀 (깔끔하게 숨기거나 얇게 처리) */
+.roadmap-board::-webkit-scrollbar {
+    height: 6px;
+}
+.roadmap-board::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
+}
+
+.roadmap-dot {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    font-weight: bold;
+    color: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    flex-shrink: 0;
+    animation: dealCard 0.25s ease-out;
+}
+
+.dot-p { background-color: var(--player-blue); }
+.dot-b { background-color: var(--banker-red); }
+.dot-t { background-color: var(--tie-green); }
+
+.roadmap-summary {
+    margin-top: 12px;
+    font-size: 0.95rem;
+    color: #bdc3c7;
+    letter-spacing: 0.5px;
+}
