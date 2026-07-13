@@ -172,8 +172,9 @@ h1 {
     box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
 
-.btn:disabled { 
-    background-color: #7f8c8d; 
+.amount-btn {
+    flex: 1; padding: 8px; background: #333; color: white; border: 1px solid #555; border-radius: 6px; cursor: pointer; font-weight: bold;
+}
     color: #bdc3c7;
     cursor: not-allowed; 
     transform: none; 
